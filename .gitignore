@@ -1,0 +1,173 @@
+# Generic files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+
+# IDE/Editor settings
+.idea/
+.vscode/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.suo
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env/
+.venv/
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.project
+*.settings/
+*.factorypath
+target/
+bin/
+
+# C/C++
+*.o
+*.obj
+*.out
+*.exe
+*.a
+*.so
+*.dylib
+*.dll
+.vscode/
+
+# JavaScript/Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/dist
+/build
+/coverage
+/.eslintcache
+
+# Ruby
+*.gem
+*.rbc
+vendor/bundle
+.rspec
+.redcar/
+
+# Swift
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+.build/
+
+# Kotlin
+*.class
+*.kt.out
+*.log
+build/
+out/
+target/
+
+# Rust
+/target
+Cargo.lock
+
+# Go
+*.exe
+*.test
+/vendor/
+/bin/
+
+# Lua
+*.out
+*.luac
+
+# Haskell
+*.hi
+*.o
+*.dyn_hi
+*.dyn_o
+dist/
+dist-newstyle/
+.cabal-sandbox/
+cabal.sandbox.config
+.stack-work/
+
+# TypeScript
+*.tsbuildinfo
+
+# Scala
+*.class
+.project
+.cache/
+lib_managed/
+src_managed/
+target/
+dist/
+.idea_modules/
+
+# R
+.Rhistory
+.Rapp.history
+.Rproj.user/
+
+# Julia
+.julia/
+*.jl.cov
+*.jl.mem
+
+# Elixir/Erlang
+*.beam
+*.elixir_ls
+
+# Assembly
+*.lst
+*.o
+
+# MATLAB
+*.mexa64
+*.mexmaci64
+*.mexw64
+*.mexglx
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.log
+*.out
+*.toc
+
+# Pascal
+*.ppu
+*.o
+*.a
+
+# Arduino
+*.elf
+*.hex
+*.bin
+build/
+
+# LabVIEW
+*.lvclass
+*.lvproj
+*.lvlib
