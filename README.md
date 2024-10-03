@@ -15,8 +15,6 @@ PrimeAcrossAll is a project that implements the prime-checking algorithm in as m
     │   ├── javascript/        # JavaScript implementation
     │   └── [more languages]   # Add more language implementations
     │
-    ├── tests/                 # Test cases for all implementations
-    │
     ├── scripts/               # Automation and utility scripts
     │   └── run_all.sh         # Script to run all implementations
     │
