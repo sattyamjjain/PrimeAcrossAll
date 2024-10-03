@@ -26,6 +26,54 @@ node languages/javascript/prime.js << EOF
 17
 EOF
 
-# Placeholder for other languages
+# Run Go implementation
+echo "Running Go implementation..."
+go run languages/go/prime.go << EOF
+17
+EOF
+
+# Run Ruby implementation
+echo "Running Ruby implementation..."
+ruby languages/ruby/prime.rb << EOF
+17
+EOF
+
+# Run Swift implementation
+echo "Running Swift implementation..."
+swift languages/swift/prime.swift << EOF
+17
+EOF
+
+# Run Kotlin implementation
+echo "Running Kotlin implementation..."
+kotlinc languages/kotlin/Prime.kt -include-runtime -d languages/kotlin/Prime.jar
+java -jar languages/kotlin/Prime.jar << EOF
+17
+EOF
+
+# Run Rust implementation
+echo "Running Rust implementation..."
+rustc languages/rust/prime.rs -o languages/rust/prime
+languages/rust/prime << EOF
+17
+EOF
+
+# Run PHP implementation
+echo "Running PHP implementation..."
+php languages/php/prime.php << EOF
+17
+EOF
+
+# Run Perl implementation
+echo "Running Perl implementation..."
+perl languages/perl/prime.pl << EOF
+17
+EOF
+
+# Run R implementation
+echo "Running R implementation..."
+Rscript languages/r/prime.R << EOF
+17
+EOF
 
 echo "All implementations executed."
