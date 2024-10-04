@@ -1,0 +1,246 @@
+{
+  "benchmarks": [
+    {
+      "language": "Python",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "8064",
+      "loc": "15",
+      "language_type": "Interpreted",
+      "concurrency_support": "Async/Await",
+      "dependencies": "Minimal (Python3)"
+    },
+    {
+      "language": "Java",
+      "real_time_ms": "40",
+      "user_time_ms": "50",
+      "sys_time_ms": "10",
+      "max_memory_kb": "40064",
+      "loc": "25",
+      "language_type": "Compiled",
+      "concurrency_support": "Threads",
+      "dependencies": "Requires JVM"
+    },
+    {
+      "language": "C",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "1664",
+      "loc": "30",
+      "language_type": "Compiled",
+      "concurrency_support": "Pthreads",
+      "dependencies": "Requires gcc compiler"
+    },
+    {
+      "language": "JavaScript",
+      "real_time_ms": "20",
+      "user_time_ms": "20",
+      "sys_time_ms": "0",
+      "max_memory_kb": "41600",
+      "loc": "20",
+      "language_type": "Interpreted",
+      "concurrency_support": "Limited (event-driven)",
+      "dependencies": "Requires Node.js"
+    },
+    {
+      "language": "Ruby",
+      "real_time_ms": "30",
+      "user_time_ms": "20",
+      "sys_time_ms": "10",
+      "max_memory_kb": "21632",
+      "loc": "20",
+      "language_type": "Interpreted",
+      "concurrency_support": "Limited",
+      "dependencies": "Minimal (Ruby interpreter)"
+    },
+    {
+      "language": "PHP",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "15488",
+      "loc": "15",
+      "language_type": "Interpreted",
+      "concurrency_support": "No native concurrency",
+      "dependencies": "Requires PHP runtime"
+    },
+    {
+      "language": "Go",
+      "real_time_ms": "140",
+      "user_time_ms": "120",
+      "sys_time_ms": "60",
+      "max_memory_kb": "45824",
+      "loc": "25",
+      "language_type": "Compiled",
+      "concurrency_support": "Goroutines",
+      "dependencies": "Minimal (Go runtime)"
+    },
+    {
+      "language": "Perl",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "6912",
+      "loc": "18",
+      "language_type": "Interpreted",
+      "concurrency_support": "Limited",
+      "dependencies": "Minimal (Perl interpreter)"
+    },
+    {
+      "language": "Swift",
+      "real_time_ms": "1110",
+      "user_time_ms": "1010",
+      "sys_time_ms": "80",
+      "max_memory_kb": "218652",
+      "loc": "20",
+      "language_type": "Compiled",
+      "concurrency_support": "Grand Central Dispatch",
+      "dependencies": "Requires Swift runtime"
+    },
+    {
+      "language": "R",
+      "real_time_ms": "110",
+      "user_time_ms": "90",
+      "sys_time_ms": "10",
+      "max_memory_kb": "57288",
+      "loc": "10",
+      "language_type": "Interpreted",
+      "concurrency_support": "No native concurrency",
+      "dependencies": "Requires R environment"
+    },
+    {
+      "language": "Kotlin",
+      "real_time_ms": "40",
+      "user_time_ms": "40",
+      "sys_time_ms": "0",
+      "max_memory_kb": "38784",
+      "loc": "25",
+      "language_type": "Compiled",
+      "concurrency_support": "Coroutines",
+      "dependencies": "Requires JVM"
+    },
+    {
+      "language": "Rust",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "2048",
+      "loc": "35",
+      "language_type": "Compiled",
+      "concurrency_support": "Native Threads",
+      "dependencies": "Requires Rust compiler"
+    },
+    {
+      "language": "Haskell",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "3200",
+      "loc": "20",
+      "language_type": "Compiled",
+      "concurrency_support": "Green Threads",
+      "dependencies": "Requires GHC (Haskell compiler)"
+    },
+    {
+      "language": "Scala",
+      "real_time_ms": "390",
+      "user_time_ms": "590",
+      "sys_time_ms": "90",
+      "max_memory_kb": "78328",
+      "loc": "30",
+      "language_type": "Compiled",
+      "concurrency_support": "Akka (Concurrency)",
+      "dependencies": "Requires Scala runtime"
+    },
+    {
+      "language": "Lua",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "2560",
+      "loc": "12",
+      "language_type": "Interpreted",
+      "concurrency_support": "No native concurrency",
+      "dependencies": "Minimal (Lua interpreter)"
+    },
+    {
+      "language": "TypeScript",
+      "real_time_ms": "20",
+      "user_time_ms": "20",
+      "sys_time_ms": "0",
+      "max_memory_kb": "41600",
+      "loc": "20",
+      "language_type": "Interpreted",
+      "concurrency_support": "Event-driven concurrency",
+      "dependencies": "Requires Node.js"
+    },
+    {
+      "language": "F#",
+      "real_time_ms": "1410",
+      "user_time_ms": "1370",
+      "sys_time_ms": "70",
+      "max_memory_kb": "160012",
+      "loc": "20",
+      "language_type": "Compiled",
+      "concurrency_support": "Async/Await",
+      "dependencies": ".NET Runtime"
+    },
+    {
+      "language": "Dart",
+      "real_time_ms": "170",
+      "user_time_ms": "270",
+      "sys_time_ms": "50",
+      "max_memory_kb": "159180",
+      "loc": "25",
+      "language_type": "Compiled",
+      "concurrency_support": "Async/Await",
+      "dependencies": "Requires Dart SDK"
+    },
+    {
+      "language": "Elixir",
+      "real_time_ms": "280",
+      "user_time_ms": "310",
+      "sys_time_ms": "50",
+      "max_memory_kb": "52480",
+      "loc": "15",
+      "language_type": "Interpreted",
+      "concurrency_support": "Actor-based concurrency (Erlang VM)",
+      "dependencies": "Requires Erlang/Elixir"
+    },
+    {
+      "language": "Julia",
+      "real_time_ms": "1210",
+      "user_time_ms": "1250",
+      "sys_time_ms": "1090",
+      "max_memory_kb": "311740",
+      "loc": "15",
+      "language_type": "Compiled",
+      "concurrency_support": "Parallelism",
+      "dependencies": "Requires Julia runtime"
+    },
+    {
+      "language": "Objective-C",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "1792",
+      "loc": "35",
+      "language_type": "Compiled",
+      "concurrency_support": "Grand Central Dispatch",
+      "dependencies": "Requires GNUstep"
+    },
+    {
+      "language": "V",
+      "real_time_ms": "0",
+      "user_time_ms": "0",
+      "sys_time_ms": "0",
+      "max_memory_kb": "3456",
+      "loc": "25",
+      "language_type": "Compiled",
+      "concurrency_support": "Concurrency Support",
+      "dependencies": "Requires V compiler"
+    }
+  ]
+}
