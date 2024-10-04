@@ -76,4 +76,69 @@ languages/rust/prime << EOF
 17
 EOF
 
+# Haskell implementation
+echo "Running Haskell implementation..."
+ghc languages/haskell/prime.hs -o languages/haskell/prime
+languages/haskell/prime << EOF
+17
+EOF
+
+# Scala implementation
+echo "Running Scala implementation..."
+scalac languages/scala/Prime.scala -d languages/scala
+scala -cp languages/scala Prime << EOF
+17
+EOF
+
+# Lua implementation
+echo "Running Lua implementation..."
+lua languages/lua/prime.lua << EOF
+17
+EOF
+
+# TypeScript implementation
+echo "Running TypeScript implementation..."
+tsc languages/typescript/prime.ts
+node languages/typescript/prime.js << EOF
+17
+EOF
+
+# F# implementation
+echo "Running F# implementation..."
+fsharpi languages/fsharp/prime.fsx << EOF
+17
+EOF
+
+# Dart implementation
+echo "Running Dart implementation..."
+dart languages/dart/prime.dart << EOF
+17
+EOF
+
+# Elixir implementation
+echo "Running Elixir implementation..."
+elixir languages/elixir/prime.exs << EOF
+17
+EOF
+
+# Julia implementation
+echo "Running Julia implementation..."
+julia languages/julia/prime.jl << EOF
+17
+EOF
+
+# Objective-C implementation
+echo "Running Objective-C implementation..."
+gcc languages/objc/prime.m -o languages/objc/prime -I /usr/include/GNUstep -L /usr/lib/GNUstep -lgnustep-base -lobjc -std=c99
+./languages/objc/prime << EOF
+17
+EOF
+
+# V implementation
+echo "Running V implementation..."
+v languages/v/prime.v
+./languages/v/prime << EOF
+17
+EOF
+
 echo "All implementations executed."
