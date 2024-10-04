@@ -2,11 +2,15 @@
 
 # Number to check if prime (passed as argument or defaults to 1000000)
 NUMBER=${1:-1000000}
-OUTPUT_FILE="benchmark_results.txt"
+OUTPUT_FILE="benchmark_results.json"
 
-# Initialize the output file with table headers
-echo "| Language      | Real Time (s) | User Time (s) | Sys Time (s) | Max Memory (KB) | LOC | Language Type | Concurrency Support     | Dependencies            |" > $OUTPUT_FILE
-echo "|---------------|---------------|---------------|--------------|-----------------|-----|---------------|------------------------|-------------------------|" >> $OUTPUT_FILE
+# Ensure the output file is created in the script's directory
+SCRIPT_DIR=$(dirname "$0")
+OUTPUT_FILE="$SCRIPT_DIR/$OUTPUT_FILE"
+
+# Initialize the output JSON file
+echo "{" > $OUTPUT_FILE
+echo "  \"benchmarks\": [" >> $OUTPUT_FILE
 
 # Function to benchmark a language and capture performance data
 benchmark_language() {
@@ -20,28 +24,47 @@ benchmark_language() {
     echo "Benchmarking $language implementation..."
 
     # Run the command with time and capture all output
-    OUTPUT=$(/usr/bin/time -v $command $NUMBER 2>&1)
+    OUTPUT=$(/usr/bin/time -f "\nElapsed: %e\nUser: %U\nSystem: %S\nMaxMemory: %M" $command $NUMBER 2>&1)
 
     # Extract the key metrics from the output
-    REAL_TIME=$(echo "$OUTPUT" | grep -oP 'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): \K[0-9]+m[0-9.]+s' | sed 's/m/:/' | awk -F: '{print ($1 * 60) + $2}')
-    if [[ -z "$REAL_TIME" ]]; then
-        REAL_TIME=$(echo "$OUTPUT" | grep -oP 'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): \K[0-9.]+s' || echo "Failed")
-    fi
-    USER_TIME=$(echo "$OUTPUT" | grep -oP 'User time \(seconds\): \K[0-9.]+')
-    SYS_TIME=$(echo "$OUTPUT" | grep -oP 'System time \(seconds\): \K[0-9.]+')
-    MAX_MEMORY=$(echo "$OUTPUT" | grep -oP 'Maximum resident set size \(kbytes\): \K[0-9]+')
-
-    # Handle cases where times were not captured
-    if [[ -z "$REAL_TIME" ]] || [[ -z "$USER_TIME" ]] || [[ -z "$SYS_TIME" ]]; then
+    REAL_TIME=$(echo "$OUTPUT" | grep -oP 'Elapsed: \K[0-9.]+')
+    if [[ -n "$REAL_TIME" ]]; then
+        REAL_TIME=$(awk "BEGIN {printf \"%.0f\", $REAL_TIME * 1000}")
+    else
         REAL_TIME="Failed"
+    fi
+
+    USER_TIME=$(echo "$OUTPUT" | grep -oP 'User: \K[0-9.]+')
+    if [[ -n "$USER_TIME" ]]; then
+        USER_TIME=$(awk "BEGIN {printf \"%.0f\", $USER_TIME * 1000}")
+    else
         USER_TIME="Failed"
+    fi
+
+    SYS_TIME=$(echo "$OUTPUT" | grep -oP 'System: \K[0-9.]+')
+    if [[ -n "$SYS_TIME" ]]; then
+        SYS_TIME=$(awk "BEGIN {printf \"%.0f\", $SYS_TIME * 1000}")
+    else
         SYS_TIME="Failed"
+    fi
+
+    MAX_MEMORY=$(echo "$OUTPUT" | grep -oP 'MaxMemory: \K[0-9]+')
+    if [[ -z "$MAX_MEMORY" ]]; then
         MAX_MEMORY="N/A"
     fi
 
-    # Append results to the output file with additional details (LOC, language type, concurrency support, and dependencies)
-    printf "| %-13s | %-13s | %-13s | %-12s | %-15s | %-3s | %-13s | %-22s | %-23s |
-" "$language" "$REAL_TIME" "$USER_TIME" "$SYS_TIME" "$MAX_MEMORY" "$loc" "$lang_type" "$concurrency" "$dependencies" >> $OUTPUT_FILE
+    # Append results to the output JSON file with additional details (LOC, language type, concurrency support, and dependencies)
+    echo "    {" >> $OUTPUT_FILE
+    echo "      \"language\": \"$language\"," >> $OUTPUT_FILE
+    echo "      \"real_time_ms\": \"$REAL_TIME\"," >> $OUTPUT_FILE
+    echo "      \"user_time_ms\": \"$USER_TIME\"," >> $OUTPUT_FILE
+    echo "      \"sys_time_ms\": \"$SYS_TIME\"," >> $OUTPUT_FILE
+    echo "      \"max_memory_kb\": \"$MAX_MEMORY\"," >> $OUTPUT_FILE
+    echo "      \"loc\": \"$loc\"," >> $OUTPUT_FILE
+    echo "      \"language_type\": \"$lang_type\"," >> $OUTPUT_FILE
+    echo "      \"concurrency_support\": \"$concurrency\"," >> $OUTPUT_FILE
+    echo "      \"dependencies\": \"$dependencies\"" >> $OUTPUT_FILE
+    echo "    }," >> $OUTPUT_FILE
 }
 
 # Ensure compiled languages are built before benchmarking
@@ -129,10 +152,15 @@ benchmark_language "Objective-C" "./languages/objc/prime" "35" "Compiled" "Grand
 # V: Compiled
 benchmark_language "V" "./languages/v/prime" "25" "Compiled" "Concurrency Support" "Requires V compiler"
 
+# Finalize the JSON structure
+sed -i '$ s/,$//' $OUTPUT_FILE  # Remove the trailing comma from the last element
+echo "  ]" >> $OUTPUT_FILE
+echo "}" >> $OUTPUT_FILE
+
 echo "All benchmarks completed."
 
-# Display the comparison table
+# Display the JSON file
 echo ""
-echo "==================== Benchmark Results ===================="
+echo "==================== Benchmark Results (JSON) ===================="
 cat $OUTPUT_FILE
 echo "============================================================"

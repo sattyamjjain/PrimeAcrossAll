@@ -46,6 +46,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     time \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip3 install matplotlib
+
 # Install Node.js 18.x, TypeScript, and type definitions for Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs \
