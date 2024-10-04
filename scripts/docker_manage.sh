@@ -26,14 +26,10 @@ build_docker_image() {
     fi
 }
 
-# Function to delete the old Docker image and clean the build cache
+# Function to delete the old Docker image
 delete_old_image() {
     echo "Deleting old Docker image..."
     docker rmi $IMAGE_NAME
-
-    # Clean the Docker build cache
-    echo "Cleaning Docker build cache..."
-    docker builder prune -f
 }
 
 # Check if the Dockerfile exists
@@ -41,9 +37,6 @@ if [ ! -f "$DOCKERFILE" ]; then
     echo "Error: Dockerfile not found!"
     exit 1
 fi
-
-# Check if the Docker image exists
-image_exists=$(docker images -q $IMAGE_NAME)
 
 # Calculate the current Dockerfile hash
 current_hash=$(calculate_dockerfile_hash)
@@ -53,9 +46,9 @@ if [ -f "$HASH_FILE" ]; then
     # Read the stored hash
     stored_hash=$(cat $HASH_FILE)
 
-    # Compare hashes to see if Dockerfile has changed or if image is missing
-    if [ "$current_hash" != "$stored_hash" ] || [ -z "$image_exists" ]; then
-        echo "Dockerfile has changed or Docker image is missing."
+    # Compare hashes to see if Dockerfile has changed
+    if [ "$current_hash" != "$stored_hash" ]; then
+        echo "Dockerfile has changed."
         if docker images | grep -q $IMAGE_NAME; then
             delete_old_image
         fi
@@ -64,10 +57,27 @@ if [ -f "$HASH_FILE" ]; then
         echo "Dockerfile has not changed. Using existing Docker image."
     fi
 else
-    echo "No previous Dockerfile hash found or Docker image is missing. Building Docker image for the first time."
+    echo "No previous Dockerfile hash found. Building Docker image for the first time."
     build_docker_image
 fi
 
-# Run Docker container with mounted volumes
-echo "Running the Docker container with the mounted code..."
-docker run --rm -v $(pwd)/languages:/app/languages -v $(pwd)/scripts:/app/scripts $IMAGE_NAME
+# Ensure that the scripts have executable permissions
+chmod +x scripts/run_all.sh scripts/benchmark_all.sh
+
+# Check which script to run
+if [ "$1" == "run" ]; then
+    # Running run_all.sh
+    echo "Running run_all.sh..."
+    docker run --rm -v $(pwd)/languages:/app/languages -v $(pwd)/scripts:/app/scripts $IMAGE_NAME "/app/scripts/run_all.sh ${2:-1000000}"
+
+elif [ "$1" == "benchmark" ]; then
+    # Running benchmark_all.sh
+    echo "Running benchmark_all.sh..."
+    docker run --rm -v $(pwd)/languages:/app/languages -v $(pwd)/scripts:/app/scripts $IMAGE_NAME "/app/scripts/benchmark_all.sh ${2:-1000000}"
+
+else
+    echo "Usage: ./docker_manage.sh [run|benchmark] [number]"
+    echo "Example: ./docker_manage.sh run 1000"
+    echo "Example: ./docker_manage.sh benchmark 1000"
+    exit 1
+fi

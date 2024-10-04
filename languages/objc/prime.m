@@ -1,29 +1,22 @@
-#import <Foundation/Foundation.h>
-#import <math.h>
+#include <stdio.h>
+#include <math.h>
 
-BOOL isPrime(int n) {
-    if (n <= 1) return NO;
-    if (n == 2) return YES;
-
+int isPrime(int n) {
+    if (n <= 1) return 0;
     for (int i = 2; i <= sqrt(n); i++) {
-        if (n % i == 0) return NO;
+        if (n % i == 0) return 0;
     }
-    return YES;
+    return 1;
 }
 
-int main(int argc, const char * argv[]) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+int main() {
     int number;
-    NSLog(@"Enter a number to check if it's prime: ");
+    printf("Enter a number to check if it's prime: ");
     scanf("%d", &number);
-
     if (isPrime(number)) {
-        NSLog(@"%d is a prime number.", number);
+        printf("%d is a prime number.\n", number);
     } else {
-        NSLog(@"%d is not a prime number.", number);
+        printf("%d is not a prime number.\n", number);
     }
-
-    [pool drain];
     return 0;
 }

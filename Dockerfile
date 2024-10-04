@@ -37,19 +37,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libicu66 \
     libtinfo5 \
     libssl1.1 \
-    libgnustep-base-dev \
+    gnustep \
+    gnustep-devel \
     tzdata \
     unzip \
     lua5.3 \
     liblua5.3-dev \
+    time \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 18.x
+# Install Node.js 18.x, TypeScript, and type definitions for Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
-
-# Install TypeScript and Node.js types
-RUN npm install -g typescript @types/node
+    && apt-get install -y nodejs \
+    && npm install -g typescript @types/node
 
 # Install Dart
 RUN wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /usr/share/keyrings/dart-archive-keyring.gpg \
@@ -98,5 +98,6 @@ WORKDIR /app
 # Define the volume where the source code will be mounted
 VOLUME ["/app/languages", "/app/scripts"]
 
-# Make the run_all.sh script executable (from the mounted volume)
-CMD ["/bin/bash", "/app/scripts/run_all.sh"]
+# Make the benchmark_all.sh or run_all.sh script executable (from the mounted volume)
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["/app/scripts/run_all.sh", "1000000"]
