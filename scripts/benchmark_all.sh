@@ -188,6 +188,81 @@ benchmark_language "OCaml" "./languages/ocaml/prime" "25" "Compiled" "Limited" "
 # Pascal: Compiled
 benchmark_language "Pascal" "./languages/pascal/prime" "30" "Compiled" "Limited" "Requires Free Pascal"
 
+# Blockly implementation
+benchmark_language "Blockly (JavaScript output)" "node languages/blockly/prime.js" "15" "Interpreted" "Event-driven concurrency" "Requires Node.js"
+
+# Chaincode (Go) implementation
+benchmark_language "Chaincode (Go)" "go run languages/chaincode/prime.go" "30" "Compiled" "Concurrency Support" "Requires Hyperledger Fabric or Go runtime"
+
+# Cirq: Interpreted (Python environment)
+benchmark_language "Cirq" "python3 languages/cirq/prime.py" "30" "Interpreted" "No native concurrency" "Requires Cirq environment (Python)"
+
+# Prolog: Interpreted
+benchmark_language "Prolog" "swipl -q -t main languages/prolog/prime.pl" "20" "Interpreted" "No native concurrency" "Requires SWI-Prolog"
+
+# Eiffel: Compiled
+benchmark_language "Eiffel" "ec -config languages/eiffel/prime.e && ./prime" "40" "Compiled" "Limited" "Requires EiffelStudio"
+
+# Fortran: Compiled
+benchmark_language "Fortran" "gfortran -o languages/fortran/prime languages/fortran/prime.f90 && ./languages/fortran/prime" "40" "Compiled" "Limited" "Requires Fortran compiler"
+
+# Forth: Interpreted
+benchmark_language "Forth" "gforth languages/forth/prime.fs" "35" "Interpreted" "No native concurrency" "Requires Forth interpreter"
+
+# GraphQL: Interpreted
+benchmark_language "GraphQL" "node languages/graphql/prime.js $NUMBER" "25" "Interpreted" "Event-driven concurrency" "Requires Node.js, GraphQL"
+
+# J implementation
+benchmark_language "J" "jconsole languages/j/prime.ijs $NUMBER" "25" "Interpreted" "No native concurrency" "Requires J runtime"
+
+# Lisp implementation
+benchmark_language "Lisp" "sbcl --script languages/lisp/prime.lisp" "15" "Interpreted" "Limited" "Minimal (SBCL interpreter)"
+
+# Matlab implementation
+benchmark_language "MATLAB" "matlab -batch \"prime_check($NUMBER)\"" "20" "Interpreted" "No native concurrency" "Requires MATLAB runtime"
+
+# Micropython implementation
+benchmark_language "MicroPython" "micropython languages/micropython/prime.py" "15" "Interpreted" "No native concurrency" "Requires MicroPython runtime"
+
+# Powershell implementation
+benchmark_language "PowerShell" "pwsh languages/powershell/prime.ps1" "15" "Interpreted" "Limited concurrency" "Requires PowerShell Core"
+
+# Q# implementation
+benchmark_language "Q#" "dotnet run --project languages/qsharp/prime.qs" "15" "Compiled (Quantum)" "Limited concurrency" "Requires .NET SDK and Q# SDK"
+
+# Qiskit implementation
+benchmark_language "Qiskit" "python3 languages/qiskit/prime.py" "15" "Interpreted (Quantum)" "No native concurrency" "Requires Python and Qiskit"
+
+# Racket implementation
+benchmark_language "Racket" "racket languages/racket/prime.rkt" "15" "Interpreted" "No native concurrency" "Requires Racket runtime"
+
+# SAS implementation
+benchmark_language "SAS" "sas -nodms languages/sas/prime.sas -log languages/sas/prime.log -print languages/sas/prime.lst" "20" "Interpreted" "No native concurrency" "Requires SAS runtime"
+
+# Solidity implementation
+benchmark_language "Solidity" "echo 'Solidity cannot be run directly. Please use Remix or a local blockchain environment to test PrimeChecker.sol.'" "NA" "Compiled" "Smart Contract" "Requires Solidity environment"
+
+# SQL implementation
+benchmark_language "SQL" "mysql -u root -p'yourpassword' -e 'source languages/sql/prime.sql; CALL isPrime($NUMBER, @result); SELECT @result;'" "NA" "SQL Query" "Limited" "Requires MySQL"
+
+# SystemVerilog implementation
+benchmark_language "SystemVerilog" "verilator --cc languages/systemverilog/prime.sv --exe --build && ./obj_dir/Vprime_checker" "40" "Hardware Description Language (HDL)" "No" "Requires Verilator or ModelSim"
+
+# TCL implementation
+benchmark_language "Tcl" "tclsh languages/tcl/prime.tcl" "15" "Interpreted" "No" "Requires Tcl runtime"
+
+# Valas implementation
+benchmark_language "Vala" "./languages/valas/prime" "20" "Compiled" "No" "Requires Vala compiler"
+
+# Verilog implementation
+benchmark_language "Verilog" "vvp languages/verilog/prime_checker" "30" "Hardware Description Language" "No" "Requires iverilog for simulation"
+
+# VHDL implementation
+benchmark_language "VHDL" "ghdl -r testbench --stop-time=40ns --vcd=languages/vhdl/prime_checker.vcd" "30" "Hardware Description Language" "No" "Requires GHDL for simulation"
+
+# Vyper implementation
+benchmark_language "Vyper" "vyper languages/vyper/prime.vy" "15" "Smart Contract Language" "No" "Requires Vyper compiler"
+
 
 # Finalize the JSON structure
 sed -i '$ s/,$//' $OUTPUT_FILE  # Remove the trailing comma from the last element

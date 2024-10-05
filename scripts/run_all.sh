@@ -159,6 +159,91 @@ run_language "Pascal" "fpc languages/pascal/prime.pas && ./languages/pascal/prim
 $NUMBER
 EOF"
 
+run_language "Blockly (JavaScript)" "node languages/blockly/prime.js <<EOF
+$NUMBER
+EOF"
+
+run_language "Chaincode (Go)" "go run languages/chaincode/prime.go <<EOF
+$NUMBER
+EOF"
+
+run_language "Cirq (Quantum)" "python3 languages/cirq/prime.py <<EOF
+$NUMBER
+EOF"
+
+run_language "Prolog" "swipl -q -t main languages/prolog/prime.pl <<EOF
+$NUMBER
+EOF"
+
+run_language "Eiffel" "ec -config languages/eiffel/prime.e && ./prime <<EOF
+$NUMBER
+EOF"
+
+run_language "Fortran" "gfortran -o languages/fortran/prime languages/fortran/prime.f90 && ./languages/fortran/prime <<EOF
+$NUMBER
+EOF"
+
+run_language "Forth" "gforth languages/forth/prime.fs <<EOF
+$NUMBER
+EOF"
+
+run_language "GraphQL" "node languages/graphql/prime.js <<EOF
+$NUMBER
+EOF"
+
+run_language "J" "jconsole languages/j/prime.ijs <<EOF
+$NUMBER
+EOF"
+
+run_language "Lisp" "sbcl --script languages/lisp/prime.lisp <<EOF
+$NUMBER
+EOF"
+
+run_language "MATLAB" "octave --eval \"prime_check($NUMBER)\" <<EOF
+$NUMBER
+EOF"
+
+run_language "MicroPython" "micropython languages/micropython/prime.py <<EOF
+$NUMBER
+EOF"
+
+run_language "PowerShell" "pwsh languages/powershell/prime.ps1 <<EOF
+$NUMBER
+EOF"
+
+run_language "Q#" "dotnet run --project languages/qsharp/prime.qs <<EOF
+$NUMBER
+EOF"
+
+run_language "Qiskit" "python3 languages/qiskit/prime.py <<EOF
+$NUMBER
+EOF"
+
+run_language "Racket" "racket languages/racket/prime.rkt <<EOF
+$NUMBER
+EOF"
+
+run_language "SAS" "sas -nodms languages/sas/prime.sas -log languages/sas/prime.log -print languages/sas/prime.lst <<EOF
+$NUMBER
+EOF"
+
+run_language "Solidity" "echo 'Please deploy and run PrimeChecker.sol using a Solidity development environment (like Remix or Ganache).'"
+
+run_language "SQL" "mysql -u root -p'yourpassword' -e 'source languages/sql/prime.sql; CALL isPrime($NUMBER, @result); SELECT @result;'"
+
+run_language "SystemVerilog" "verilator --cc languages/systemverilog/prime.sv --exe --build && ./obj_dir/Vprime_checker"
+
+run_language "Tcl" "tclsh languages/tcl/prime.tcl $NUMBER"
+
+run_language "Vala" "valac --cc=gcc languages/valas/prime.vala -o languages/valas/prime && ./languages/valas/prime $NUMBER"
+
+run_language "Verilog" "iverilog -o languages/verilog/prime_checker languages/verilog/prime.v languages/verilog/testbench.v && vvp languages/verilog/prime_checker"
+
+run_language "VHDL" "ghdl -a languages/vhdl/prime.vhdl && ghdl -a languages/vhdl/testbench.vhdl && ghdl -e testbench && ghdl -r testbench --stop-time=40ns --vcd=languages/vhdl/prime_checker.vcd"
+
+run_language "Vyper" "vyper languages/vyper/prime.vy && echo 'Vyper contract compiled. Please deploy and call the contract on a blockchain to test.'"
+
+
 echo -e "${CYAN}$separator${RESET}"
 echo -e "${GREEN}All implementations executed.${RESET}"
 echo -e "${CYAN}$separator${RESET}"
