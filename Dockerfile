@@ -44,6 +44,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     lua5.3 \
     liblua5.3-dev \
     time \
+    gnat \
+    nasm \
+    ocaml \
+    fp-compiler \
+    clojure \
+    rlwrap \
+    clinfo \
+    ocl-icd-opencl-dev \
+    ocaml \
+    ocamlbuild \
+    opencl-headers \
+    ocl-icd-libopencl1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install matplotlib
@@ -93,6 +105,12 @@ RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | tee /etc/ap
     && curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x99E82A75642AC823" | apt-key add \
     && apt-get update && apt-get install -y --no-install-recommends scala sbt \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Clojure
+RUN curl -O https://download.clojure.org/install/linux-install-1.11.1.1149.sh && \
+    chmod +x linux-install-1.11.1.1149.sh && \
+    ./linux-install-1.11.1.1149.sh && \
+    rm linux-install-1.11.1.1149.sh
 
 # Set the working directory inside the container
 WORKDIR /app

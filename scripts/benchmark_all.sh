@@ -152,6 +152,43 @@ benchmark_language "Objective-C" "./languages/objc/prime" "35" "Compiled" "Grand
 # V: Compiled
 benchmark_language "V" "./languages/v/prime" "25" "Compiled" "Concurrency Support" "Requires V compiler"
 
+# C#: Compiled
+benchmark_language "C#" "mono languages/csharp/prime.exe" "30" "Compiled" "Threads" "Requires Mono Runtime"
+
+# Ada: Compiled
+benchmark_language "Ada" "./languages/ada/prime" "35" "Compiled" "Limited" "Requires GNAT Ada compiler"
+
+# Arduino: Hardware-dependent
+echo "Skipping Arduino implementation: Please upload and test on an Arduino board."
+
+# Assembly: Compiled
+benchmark_language "Assembly" "./languages/assembly/prime" "30" "Compiled" "No Concurrency" "Requires NASM and ld"
+
+# AWK: Interpreted
+benchmark_language "AWK" "awk -f languages/awk/prime.awk" "15" "Interpreted" "No Concurrency" "Requires AWK runtime"
+
+# Bash: Interpreted
+benchmark_language "Bash" "bash languages/bash/prime.sh" "10" "Interpreted" "No Concurrency" "Minimal (Bash interpreter)"
+
+# C++: Compiled
+benchmark_language "C++" "./languages/c++/prime" "30" "Compiled" "Pthreads" "Requires g++ compiler"
+
+# Clojure: Interpreted
+benchmark_language "Clojure" "clj -M languages/clojure/prime.clj" "20" "Interpreted" "Limited" "Requires Clojure runtime"
+
+# ColdFusion: Interpreted
+benchmark_language "ColdFusion" "cfexecute(name=\"coldfusion\", arguments=\"languages/coldFusion/prime.cfm\")" "20" "Interpreted" "Limited" "Requires ColdFusion runtime"
+
+# OpenCL: Compiled
+benchmark_language "OpenCL" "./languages/opencl/prime" "25" "Compiled" "Parallelism" "Requires OpenCL runtime"
+
+# OCaml: Compiled
+benchmark_language "OCaml" "./languages/ocaml/prime" "25" "Compiled" "Limited" "Requires OCaml runtime"
+
+# Pascal: Compiled
+benchmark_language "Pascal" "./languages/pascal/prime" "30" "Compiled" "Limited" "Requires Free Pascal"
+
+
 # Finalize the JSON structure
 sed -i '$ s/,$//' $OUTPUT_FILE  # Remove the trailing comma from the last element
 echo "  ]" >> $OUTPUT_FILE
