@@ -12,10 +12,17 @@ calculate_dockerfile_hash() {
     sha256sum $DOCKERFILE | awk '{print $1}'
 }
 
+# Function to clean up Docker system (remove cache, stopped containers, dangling images)
+cleanup_docker_cache() {
+    echo "Cleaning up Docker cache..."
+    docker system prune -f --volumes
+}
+
 # Function to build the Docker image
 build_docker_image() {
     echo "Building Docker image with support for all languages..."
-    docker build -t $IMAGE_NAME .
+    cleanup_docker_cache  # Ensure we clean up the cache before building
+    docker build --no-cache -t $IMAGE_NAME .
     if [ $? -eq 0 ]; then
         echo "Docker image built successfully."
         # Store the new hash after successful build
@@ -29,7 +36,7 @@ build_docker_image() {
 # Function to delete the old Docker image
 delete_old_image() {
     echo "Deleting old Docker image..."
-    docker rmi $IMAGE_NAME
+    docker rmi $IMAGE_NAME --force
 }
 
 # Check if the Dockerfile exists
