@@ -40,7 +40,8 @@ FROM base AS golang
 # Install Go from the official binary distribution
 RUN wget https://golang.org/dl/go1.20.6.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go1.20.6.linux-amd64.tar.gz \
-    && rm go1.20.6.linux-amd64.tar.gz
+    && rm go1.20.6.linux-amd64.tar.gz \
+    && mkdir -p /go
 
 ENV GOROOT=/usr/local/go
 ENV GOPATH=/go

@@ -228,7 +228,7 @@ benchmark_language "MicroPython" "micropython languages/micropython/prime.py" "1
 benchmark_language "PowerShell" "pwsh languages/powershell/prime.ps1" "15" "Interpreted" "Limited concurrency" "Requires PowerShell Core"
 
 # Q# implementation
-benchmark_language "Q#" "dotnet run --project languages/qsharp/prime.qs" "15" "Compiled (Quantum)" "Limited concurrency" "Requires .NET SDK and Q# SDK"
+benchmark_language "Q#" "dotnet run --project languages/q#/prime.qs" "15" "Compiled (Quantum)" "Limited concurrency" "Requires .NET SDK and Q# SDK"
 
 # Qiskit implementation
 benchmark_language "Qiskit" "python3 languages/qiskit/prime.py" "15" "Interpreted (Quantum)" "No native concurrency" "Requires Python and Qiskit"
