@@ -1,49 +1,30 @@
-module prime_checker #(parameter WIDTH = 32) (
-    input logic [WIDTH-1:0] num,
-    output logic is_prime
+// prime.sv - SystemVerilog module to check if a number is prime
+
+module prime_checker(
+    input  logic [31:0] num,
+    output logic        is_prime
 );
-    logic [WIDTH-1:0] i;
-    logic found_divisor;
+
+    integer i;
+    logic flag;
 
     always_comb begin
         if (num <= 1) begin
             is_prime = 0;
+        end else if (num <= 3) begin
+            is_prime = 1;
+        end else if ((num % 2 == 0) || (num % 3 == 0)) begin
+            is_prime = 0;
         end else begin
-            found_divisor = 0;
-            for (i = 2; i <= num / 2; i = i + 1) begin
-                if (num % i == 0) begin
-                    found_divisor = 1;
+            flag = 1;
+            for (i = 5; i * i <= num; i = i + 6) begin
+                if ((num % i == 0) || (num % (i + 2) == 0)) begin
+                    flag = 0;
+                    break;
                 end
             end
-            is_prime = !found_divisor;
+            is_prime = flag;
         end
     end
-endmodule
 
-module tb_prime_checker;
-    logic [31:0] num;
-    logic is_prime;
-
-    prime_checker uut (
-        .num(num),
-        .is_prime(is_prime)
-    );
-
-    initial begin
-        num = 17;
-        #10;
-        if (is_prime)
-            $display("Number %0d is prime", num);
-        else
-            $display("Number %0d is not prime", num);
-
-        num = 18;
-        #10;
-        if (is_prime)
-            $display("Number %0d is prime", num);
-        else
-            $display("Number %0d is not prime", num);
-
-        $finish;
-    end
 endmodule

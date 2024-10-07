@@ -1,29 +1,27 @@
-\ languages/forth/prime.fs
 : is-prime ( n -- flag )
-    dup 1 <= if
-        drop 0 exit
-    then
-    2 over < if
-        drop 1 exit
-    then
-    2 swap / 2 swap
-    do
-        over i mod 0= if
-            drop 0 exit
-        then
-    loop
-    drop 1
+    dup 1 <= if drop false exit then
+    dup 3 <= if drop true exit then
+    dup 2 mod 0= if drop false exit then
+    dup 3 mod 0= if drop false exit then
+    5 swap begin
+        dup dup * over <=
+    while
+        over over mod 0= if 2drop false exit then
+        over 2 + over mod 0= if 2drop false exit then
+        6 + swap
+    repeat
+    2drop true
 ;
 
 : main
-    cr ." Enter a number to check if it's prime: " 
-    read
-    dup is-prime if
-        ." is a prime number." 
+    cr ." Enter a number to check if it's prime: " cr
+    pad dup 20 accept
+    pad swap evaluate
+    is-prime if
+        ." It is a prime number." cr
     else
-        ." is not a prime number."
+        ." It is not a prime number." cr
     then
-    cr
 ;
 
 main

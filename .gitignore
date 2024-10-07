@@ -15,6 +15,8 @@
 *.njsproj
 *.sln
 *.suo
+*.user
+*.workspace
 
 # Python
 __pycache__/
@@ -41,6 +43,7 @@ build/
 *.factorypath
 target/
 bin/
+out/
 
 # C/C++
 *.o
@@ -52,6 +55,17 @@ bin/
 *.dylib
 *.dll
 .vscode/
+a.out
+*.dSYM/
+
+# C#
+*.exe
+*.dll
+*.pdb
+*.vshost.*
+_TestResults/
+[Bb]in/
+[Oo]bj/
 
 # JavaScript/Node.js
 node_modules/
@@ -63,18 +77,31 @@ yarn-error.log*
 /coverage
 /.eslintcache
 
+# TypeScript
+*.tsbuildinfo
+*.js (if built from TypeScript)
+*.map
+
 # Ruby
 *.gem
 *.rbc
 vendor/bundle
 .rspec
 .redcar/
+coverage/
+spec/reports/
+test/tmp/
+test/version_tmp/
+tmp/
 
 # Swift
 *.xcodeproj
 *.xcworkspace
 *.xcuserstate
 .build/
+DerivedData/
+*.swiftpm/
+*.xctest/
 
 # Kotlin
 *.class
@@ -83,6 +110,7 @@ vendor/bundle
 build/
 out/
 target/
+*.jar
 
 # Rust
 /target
@@ -93,6 +121,9 @@ Cargo.lock
 *.test
 /vendor/
 /bin/
+*.out
+*.mod
+*.sum
 
 # Lua
 *.out
@@ -108,9 +139,7 @@ dist-newstyle/
 .cabal-sandbox/
 cabal.sandbox.config
 .stack-work/
-
-# TypeScript
-*.tsbuildinfo
+.ghc.environment.*
 
 # Scala
 *.class
@@ -121,11 +150,15 @@ src_managed/
 target/
 dist/
 .idea_modules/
+*.log
+out/
 
 # R
 .Rhistory
 .Rapp.history
 .Rproj.user/
+*.RData
+*.Ruserdata
 
 # Julia
 .julia/
@@ -135,16 +168,25 @@ dist/
 # Elixir/Erlang
 *.beam
 *.elixir_ls
+deps/
+_build/
+erl_crash.dump
 
 # Assembly
 *.lst
 *.o
+*.out
 
-# MATLAB
+# MATLAB/Octave
 *.mexa64
 *.mexmaci64
 *.mexw64
 *.mexglx
+*.asv
+*.mat
+*.fig
+*.mlx
+*.mex
 
 # LaTeX
 *.aux
@@ -155,11 +197,16 @@ dist/
 *.log
 *.out
 *.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
 
 # Pascal
 *.ppu
 *.o
 *.a
+*.compiled
 
 # Arduino
 *.elf
@@ -171,3 +218,161 @@ build/
 *.lvclass
 *.lvproj
 *.lvlib
+
+# Fortran
+*.mod
+*.o
+*.out
+*.MOD
+
+# OCaml
+*.cmx
+*.cmi
+*.cmo
+*.o
+_build/
+*.annot
+*.byte
+*.native
+
+# F#
+*.exe
+*.dll
+*.pdb
+*.vshost.*
+[Bb]in/
+[Oo]bj/
+
+# Prolog
+*.qlf
+*.xwam
+*.wam
+
+# Vala
+*.c
+*.vapi
+*.deps
+*.o
+*.gir
+*.typelib
+
+# Verilog/SystemVerilog
+*.vcd
+obj_dir/
+*.o
+*.out
+*.vvp
+*.vpi
+simv*
+csrc/
+DVEfiles/
+inter.vpd
+vcs.key
+ucli.key
+
+# VHDL
+work/
+*.o
+*.cf
+*.exe
+*.vhdx
+
+# Solidity
+*.bin
+*.abi
+build/
+cache/
+
+# Q#
+bin/
+obj/
+*.pdb
+*.dll
+TestResults/
+
+# Eiffel
+EIFGEN/
+Ace
+*.ace
+
+# Lisp
+*.fasl
+*.ufasl
+*.lib
+*.x86f
+*.lx64fsl
+*.dx64fsl
+
+# J
+*.ijs~
+
+# OpenCL
+*.cl.bin
+
+# PowerShell
+*.ps1xml
+*.psm1
+
+# Miscellaneous
+*.bak
+*.tmp
+*.temp
+*.swp
+*~
+Thumbs.db
+desktop.ini
+
+# Ignore compiled binaries and build artifacts in languages directory
+languages/**/prime
+languages/**/prime.exe
+languages/**/prime.o
+languages/**/prime.out
+languages/**/prime.class
+languages/**/Prime.class
+languages/**/*.exe
+languages/**/*.o
+languages/**/*.obj
+languages/**/*.class
+languages/**/*.jar
+languages/**/*.dll
+languages/**/*.so
+languages/**/*.a
+languages/**/*.pyc
+languages/**/__pycache__/
+languages/**/obj/
+languages/**/bin/
+languages/**/dist/
+languages/**/build/
+languages/**/target/
+languages/**/.stack-work/
+languages/**/.cabal-sandbox/
+languages/**/node_modules/
+languages/**/vendor/
+languages/**/coverage/
+languages/**/*.beam
+languages/**/*.hi
+languages/**/*.mod
+languages/**/*.dyn_hi
+languages/**/*.dyn_o
+languages/**/.vscode/
+languages/**/.idea/
+
+# Ignore specific files generated during runs
+scripts/*.log
+scripts/*.tmp
+benchmark_results.json
+benchmark_results.csv
+
+# Ignore language-specific temporary or cache files
+languages/**/.DS_Store
+languages/**/.cache/
+languages/**/.pytest_cache/
+languages/**/.mypy_cache/
+languages/**/.gradle/
+languages/**/.nuget/
+languages/**/.git/
+
+# Ignore editor swap files
+*.sublime-workspace
+*.sublime-project
+*.kate-swp

@@ -1,35 +1,32 @@
-// testbench.v - Testbench for Verilog prime checker
+// prime.v - Verilog module to check if a number is prime
 
-module testbench;
-
-reg [31:0] num;
-wire is_prime;
-
-prime_checker uut (
-    .num(num),
-    .is_prime(is_prime)
+module prime_checker(
+    input wire [31:0] num,
+    output reg is_prime
 );
 
-initial begin
-    $monitor("Number = %d, Prime = %b", num, is_prime);
+    integer i;
+    reg flag;
 
-    // Test case 1: Prime number
-    num = 17;
-    #10;
-
-    // Test case 2: Not a prime number
-    num = 18;
-    #10;
-
-    // Test case 3: Another prime number
-    num = 19;
-    #10;
-
-    // Test case 4: Another non-prime number
-    num = 20;
-    #10;
-
-    $finish;
-end
+    always @(*) begin
+        if (num <= 1) begin
+            is_prime = 0;
+        end else if (num <= 3) begin
+            is_prime = 1;
+        end else if (num % 2 == 0 || num % 3 == 0) begin
+            is_prime = 0;
+        end else begin
+            flag = 1;
+            i = 5;
+            while (i * i <= num) begin
+                if (num % i == 0 || num % (i + 2) == 0) begin
+                    flag = 0;
+                    disable while_loop;
+                end
+                i = i + 6;
+            end
+            is_prime = flag;
+        end
+    end
 
 endmodule

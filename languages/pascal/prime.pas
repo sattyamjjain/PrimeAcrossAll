@@ -1,37 +1,38 @@
 program PrimeCheck;
 
-function IsPrime(n: Integer): Boolean;
-var
-  i: Integer;
-begin
-  if n <= 1 then
-    IsPrime := False
-  else if n = 2 then
-    IsPrime := True
-  else if n mod 2 = 0 then
-    IsPrime := False
-  else
-  begin
-    IsPrime := True;
-    i := 3;
-    while i * i <= n do
-    begin
-      if n mod i = 0 then
-      begin
-        IsPrime := False;
-        Break;
-      end;
-      i := i + 2;
-    end;
-  end;
-end;
+uses sysutils;
 
 var
-  number: Integer;
+   n: LongInt;
+   isPrime: Boolean;
+   i: LongInt;
 begin
-  ReadLn(number);
-  if IsPrime(number) then
-    WriteLn('true')
-  else
-    WriteLn('false');
+   Write('Enter a number to check if it''s prime: ');
+   ReadLn(n);
+   isPrime := True;
+
+   if n <= 1 then
+      isPrime := False
+   else if n <= 3 then
+      isPrime := True
+   else if (n mod 2 = 0) or (n mod 3 = 0) then
+      isPrime := False
+   else
+   begin
+      i := 5;
+      while i * i <= n do
+      begin
+         if (n mod i = 0) or (n mod (i + 2) = 0) then
+         begin
+            isPrime := False;
+            Break;
+         end;
+         i := i + 6;
+      end;
+   end;
+
+   if isPrime then
+      WriteLn(n, ' is a prime number.')
+   else
+      WriteLn(n, ' is not a prime number.');
 end.
