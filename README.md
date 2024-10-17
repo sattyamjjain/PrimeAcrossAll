@@ -17,7 +17,10 @@ PrimeAcrossAll is a project that implements the prime-checking algorithm in as m
     │
     ├── scripts/               # Automation and utility scripts
     │   └── run_all.sh         # Script to run all implementations
+    │   └── docker_manage.sh   # Script to build, run, and manage Docker containers
+    │   └── benchmark_all.sh   # Script to build, run, and manage benchmark Docker containers
     │
+    ├── Dockerfile             # Dockerfile for multi-language environment setup
     ├── README.md              # This file
     ├── LICENSE.md             # License information
     └── CONTRIBUTING.md        # Guidelines for contributing
@@ -37,10 +40,22 @@ PrimeAcrossAll is a project that implements the prime-checking algorithm in as m
    cd PrimeAcrossAll
    ```
 
-3. Run all implementations using the provided script (this will run the implementations in all available languages):
+3. Build the Docker image, which includes all language environments.:
 
    ```bash
-   bash scripts/run_all.sh
+   bash scripts/docker_manage.sh
+   ```
+
+4. Run the script inside the container to check prime numbers in all implemented languages.:
+
+   ```bash
+   bash scripts/docker_manage.sh run
+   ```
+
+5. Run the benchmarking script inside the container to check prime numbers in all implemented languages.:
+
+   ```bash
+   bash scripts/docker_manage.sh benchmark
    ```
 
 ## Adding a New Language
